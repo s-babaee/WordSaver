@@ -36,24 +36,22 @@ def initialize_file():
 
 # Add a word to the CSV file
 def add_word(word):
-    # خواندن محتوای فایل و بررسی وجود کلمه
     try:
         with open(FILENAME, 'r', encoding='utf-8') as file:
             reader = csv.reader(file)
-            words = {row[0] for row in reader}  # خواندن تمام کلمات (ستون اول)
+            words = {row[0] for row in reader}  
     except FileNotFoundError:
-        words = set()  # اگر فایل وجود نداشت، لیست را خالی در نظر بگیر
+        words = set()  
 
-    # بررسی اینکه کلمه جدید است یا تکراری
     if word in words:
         print(f"⚠️ '{word}' already exists in the file!\n")
         show_notification(f"⚠️ '{word}' already exists in the file!")
-        return  # خروج از تابع و عدم ذخیره‌ی مجدد
+        return  
 
-    # اضافه کردن کلمه جدید به فایل
+    # add new word to DB
     with open(FILENAME, 'a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        writer.writerow([word, "", "", "", "", 0])  # ذخیره کلمه با مقدار اولیه
+        writer.writerow([word, "", "", "", "", 0])  
     print(f"✅ '{word}' has been successfully saved!\n")
     show_notification(f"✅ '{word}' has been successfully saved!\n")
 
@@ -157,7 +155,7 @@ def save_and_translate():
 # Run the program
 def main():
     initialize_file()
-    print(f"📌 The program is running... Copy any word and press '{SHORTCUT_KEY}' to save it.")
+    print(f"📌 The program is running... Copy any word and press '{SHORTCUT_SAVE_AND_TRANSLATE}' to save and translate it.")
     print("🛑 Press 'Ctrl+C' to exit.")
 
     keyboard.add_hotkey(SHORTCUT_KEY, on_shortcut)
