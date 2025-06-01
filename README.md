@@ -28,8 +28,8 @@ Install all dependencies with:
 
 ```bash
 pip install keyboard pyperclip deep_translator plyer requests
-
-# Run the program
+```
+## Run the program
 Simply double-click the included run_script.bat file or run it from the command line.
 
 # How to use
